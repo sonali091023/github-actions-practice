@@ -40,4 +40,8 @@ jobs:
       - name: Print runner OS
         run: |
           echo "Runner OS: ${{ runner.os}}"
+      
+      # Step 7 Intentionaly failing the step
+      - name: Intentional failure
+        run: exit 1
 
