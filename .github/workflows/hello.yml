@@ -24,20 +24,20 @@ jobs:
         run: echo "Hello from github-actions!!!"
 
       #Step 3: current date and time
-      - name: Print the current date and time
-        run: data
+      #- name: Print the current date and time
+        #run: data
 
       #Step 4: print the branch name
-      - name: Print the branch name
-        run: |
-          echo "Triggered by branch: ${{ github.ref_name }}"
+      #- name: Print the branch name
+        #run: |
+         # echo "Triggered by branch: ${{ github.ref_name }}"
 
       #Step 5: List the repo file
-      - name: List repo file
-        run: ls -la
+      #- name: List repo file
+       # run: ls -la
 
       # Step 6 Print runner operating system
-      - name: Print runner OS
-        run: |
-          echo "Runner OS: ${{ runner.os}}"
+      #- name: Print runner OS
+      #  run: |
+      #    echo "Runner OS: ${{ runner.os}}"
 
