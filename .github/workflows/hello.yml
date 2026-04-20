@@ -21,7 +21,7 @@ jobs:
 
       #Step 2: Print greeting
       - name: Print greeting
-        run: echo "Hello from github-actions!!!"
+        run: echo "Hello from github-actions"
 
       #Step 3: current date and time
       #- name: Print the current date and time
