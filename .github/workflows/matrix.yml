@@ -29,6 +29,6 @@ jobs:
       - name: Print Python version
         run: python --version
 
-      - name: Fail on Python 3.11                      # Intentionally fail ONE job
-        if: matrix.python-version == '3.11'
-        run: exit 1
+      #- name: Fail on Python 3.11                      # Intentionally fail ONE job
+        #if: matrix.python-version == '3.11'
+        #run: exit 1
