@@ -8,7 +8,7 @@ on:
       - main
 
   schedule:
-    - cron: "* * * * *"   # runs every day at midnight UTC
+    - cron: "0 0 * * *"   # runs every day at midnight UTC
 
 #Define the jobs that will run in this workflow
 jobs:
