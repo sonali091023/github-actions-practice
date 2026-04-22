@@ -2,15 +2,20 @@ name: Python Matrix Workflow
 
 on:
   push:
-
+    
 jobs:
   test-python:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.11", "3.12"]
+
+        exclude:                   #This removes Windows + Python 3.10
+        - os: windows-latest
+          python-version: "3.10"
 
     steps:
       - name: Checkout code
@@ -23,3 +28,7 @@ jobs:
 
       - name: Print Python version
         run: python --version
+
+      - name: Fail on Python 3.11                      # Intentionally fail ONE job
+        if: matrix.python-version == '3.11'
+        run: exit 1
