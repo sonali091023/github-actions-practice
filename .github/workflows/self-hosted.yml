@@ -23,3 +23,8 @@ jobs:
       - name: Verify file exists
         run: |
           ls -l my-test-file.txt
+
+      - name: Show runner info
+        run: |
+          echo "Runner Name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
