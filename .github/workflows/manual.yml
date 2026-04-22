@@ -14,4 +14,5 @@ jobs:
 
     steps:
       - name: Print environment
-        run: echo "Selected environment: ${{ github.event.inputs.environment }}"
+        run: |
+          echo "Selected environment: ${{ github.event.inputs.environment }}"
