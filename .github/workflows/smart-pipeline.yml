@@ -31,7 +31,7 @@ jobs:
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then     #${{ github.ref }}=Detect branch type
             echo "This is a MAIN branch push"
           else
-            echo "This is a FEATURE branch push"
+            echo "This is a FEATURE branch push"    
           fi
 
       - name: Print commit message
