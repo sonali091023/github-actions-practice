@@ -1,3 +1,3 @@
-print("Hello from CI!")
+print("Hello from CI!)
 
-exit()
+exit(0)
