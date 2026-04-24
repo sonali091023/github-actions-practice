@@ -26,8 +26,8 @@ jobs:
 
       - name: Run Python script
         if: hashFiles('scripts/greet.py') != ''
-        run: python scripts/script.py
+        run: python scripts/greet.py
 
       - name: Run Shell script
         if: hashFiles('scripts/greet.sh') != ''
-        run: bash scripts/script.sh
+        run: bash scripts/greet.sh
