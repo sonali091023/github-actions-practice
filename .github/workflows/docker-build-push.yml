@@ -25,8 +25,8 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t $GITHUB_ENV .
+          docker build -t $IMAGE_NAME .
 
       - name: Push Docker Image
         run: |
-          docker push $GITHUB_ENV 
+          docker push $IMAGE_NAME
