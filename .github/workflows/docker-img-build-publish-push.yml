@@ -24,7 +24,7 @@ jobs:
       - name: Set image variables
         run: |
           SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
-          echo "IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-app" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-app-build-push-publish" >> $GITHUB_ENV
           echo "IMAGE_TAG_SHA=sha-$SHORT_SHA" >> $GITHUB_ENV
 
       #Build image with BOTH tags
