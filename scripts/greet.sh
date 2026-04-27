@@ -1,2 +1,1 @@
-- name: List files
-  run: ls -R
+echo "hello there this is shell script"
