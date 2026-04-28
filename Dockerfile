@@ -1,17 +1,35 @@
-# Use base image
-FROM node:18-slim
+# ─────────────────────────────────────
+# Stage 1: Install dependencies
+# ─────────────────────────────────────
+FROM node:20-alpine AS deps
 
-# Set working directory
 WORKDIR /app
 
-# Copy files
-COPY package*.json ./
+COPY package.json .
 
-# Install dependencies
-RUN npm install
+RUN npm install --omit=dev
 
-# Copy rest of code
+# ─────────────────────────────────────
+# Stage 2: Final lightweight image
+# ─────────────────────────────────────
+FROM node:20-alpine
+
+# Create app directory
+WORKDIR /app
+
+# Create a non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Copy dependencies and app files
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Run app
-CMD ["node", "/app/app.js"]
+# Change ownership to non-root user
+RUN chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
+
+EXPOSE 3000
+
+CMD ["node", "app.js"]
