@@ -40,5 +40,6 @@ jobs:
         run: echo "Pushing image..." && docker push $IMAGE_NAME:latest && docker push $IMAGE_NAME:$IMAGE_TAG_SHA
 
       - name: Skip message
+        run: echo "Not main branch → skipping push"
         if: github.ref != 'refs/heads/main'
         run: echo "Not main branch → skipping push"
