@@ -5,32 +5,37 @@ FROM node:20-alpine AS deps
 
 WORKDIR /app
 
-COPY package.json .
+# Copy package files
+COPY package*.json ./
 
-RUN apt-get update && apt-get install -y curl \
-    && npm install --omit=dev
+# Install dependencies
+RUN npm install --omit=dev
 
 # ─────────────────────────────────────
 # Stage 2: Final lightweight image
 # ─────────────────────────────────────
 FROM node:20-alpine
 
-# Create app directory
 WORKDIR /app
 
-# Create a non-root user
+# Install curl (Alpine uses apk, not apt)
+RUN apk add --no-cache curl
+
+# Create non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# Copy dependencies and app files
+# Copy dependencies + app code
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Change ownership to non-root user
+# Set ownership
 RUN chown -R appuser:appgroup /app
 
 # Switch to non-root user
 USER appuser
 
+# Expose port (make sure your app uses this)
 EXPOSE 3000
 
+# Start application
 CMD ["node", "app.js"]
