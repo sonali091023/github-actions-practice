@@ -20,6 +20,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(3000, "0.0.0.0", () => {
+app.listen(3000, "0.0.0.0", () => {                          // Here we have used port 3000 thats why we are taking container port as 3000 instead of 80
   console.log("Server running on port 3000");
 });
