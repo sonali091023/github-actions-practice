@@ -38,4 +38,4 @@ USER appuser
 EXPOSE 3000
 
 # Start application
-CMD ["node", "app.js"]
+CMD ["node", "app/app.js"]
