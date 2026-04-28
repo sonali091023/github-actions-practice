@@ -1,0 +1,30 @@
+name: Reusable Build Workflow
+
+on:
+  workflow_call:           #[**Note:** This makes your workflow reusable, meaning: It won’t run on push or PR, It only runs when another workflow calls it]
+    inputs:                #You defined parameters that the caller must send like app_name, environment 
+      app_name:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+        default: staging
+    secrets:
+      docker_token:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print build info
+        run: echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"           #This is how you access inputs inside steps.
+
+      - name: Verify secret is set
+        run: |
+          echo "Docker token is set: true"
