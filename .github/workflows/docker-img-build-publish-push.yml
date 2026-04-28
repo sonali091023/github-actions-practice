@@ -37,7 +37,13 @@ jobs:
 
       #Push both tags
       - name: Push Docker image
+        #github.ref → tells which branch triggered the workflow
+        #refs/heads/main → exact value for main branch
         if: github.ref == 'refs/heads/main'     #Run this step ONLY if the branch is main
         run: |
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:$IMAGE_TAG_SHA
+
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME:latest .
+
