@@ -1,12 +1,11 @@
-console.log("🚀 App started successfully!");
+const express = require("express");
+const app = express();
 
-const os = require("os");
+app.get("/", (req, res) => {
+  res.send("App is running 🚀");
+});
 
-console.log("Hostname:", os.hostname());
-console.log("Platform:", os.platform());
-console.log("Architecture:", os.arch());
-
-// Simulate some work
-setTimeout(() => {
-  console.log("✅ Task completed!");
-}, 2000);
+const PORT = process.env.PORT || 80;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
