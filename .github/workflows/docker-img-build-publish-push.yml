@@ -35,7 +35,8 @@ jobs:
             -t $IMAGE_NAME:$IMAGE_TAG_SHA \
             .
 
-      #Push both tags
+
+        #Push both tags
       - name: Push Docker image
         #github.ref → tells which branch triggered the workflow
         #refs/heads/main → exact value for main branch
