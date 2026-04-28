@@ -7,7 +7,8 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install --omit=dev
+RUN apt-get update && apt-get install -y curl \
+    && npm install --omit=dev
 
 # ─────────────────────────────────────
 # Stage 2: Final lightweight image
