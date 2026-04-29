@@ -34,7 +34,12 @@ jobs:
 
       - name: Verify secret is set
         run: |
-          echo "Docker token is set: true"
+          if [ -z "${{ secrets.docker_token }}" ]; then
+            echo "Docker token is NOT set"
+            exit 1
+          else
+            echo "Docker token is set"
+          fi
 
       - name: Generate version
         id: version
