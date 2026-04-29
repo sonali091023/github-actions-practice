@@ -1,3 +1,4 @@
+run-name: PR Event - ${{ github.event.action }}
 name: PR Lifecycle
 
 on:
