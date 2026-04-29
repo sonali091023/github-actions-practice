@@ -14,6 +14,7 @@ inputs:                                     #Takes inputs (name, language)
 outputs:
   greeted:
     description: "Whether greeting was successful"
+    value: ${{ steps.set_output.outputs.greeted }}
 
 runs:                                              #Runs shell commands
   using: "composite"
@@ -38,5 +39,6 @@ runs:                                              #Runs shell commands
         echo "Runner OS: $RUNNER_OS"
 
     - name: Set output                                         #Returns output (greeted=true) This is a reusable mini-tool
+      id: set_output         #Composite actions don’t automatically expose outputs
       shell: bash
       run: echo "greeted=true" >> $GITHUB_OUTPUT
