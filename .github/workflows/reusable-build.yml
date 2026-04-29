@@ -1,19 +1,19 @@
 name: Reusable Build Workflow
 
 on:
-  workflow_call:           #[**Note:** This makes your workflow reusable, meaning: It won’t run on push or PR, It only runs when another workflow calls it]
-    inputs:                #You defined parameters that the caller must send like app_name, environment 
+  workflow_call:      #[**Note:** This makes your workflow reusable, meaning: It won’t run on push or PR, It only runs when another workflow calls it]
+    inputs:           #You defined parameters that the caller must send like app_name, environment
       app_name:
         required: true
         type: string
       environment:
         required: true
         type: string
-        default: staging
     secrets:
       docker_token:
         required: true
-    outputs:
+
+    outputs:   #MUST be inside workflow_call
       build_version:
         description: "Generated build version"
         value: ${{ jobs.build.outputs.build_version }}
@@ -21,18 +21,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    build_version: ${{ steps.version.outputs.build_version }}
+
+    outputs:
+      build_version: ${{ steps.version.outputs.build_version }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Print build info
-        run: echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"           #This is how you access inputs inside steps.
+      - name: Print build info                #This is how you access inputs inside steps
+        run: echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"
 
       - name: Verify secret is set
-        run: |
-          echo "Docker token is set: true"
+        run: echo "Docker token is set: true"
 
       - name: Generate version
         id: version
