@@ -1,2 +1,3 @@
 creating file1.txt in the int branch
 Editing file1.txt in int branch
+Adding new file ti the feature-test branch
