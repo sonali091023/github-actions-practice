@@ -14,7 +14,12 @@ jobs:
       - name: Print trigger type
         run: |
           echo "Event name: ${{ github.event_name }}"
-          echo "Schedule used: ${{ github.event.schedule }}"
+
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Schedule used: ${{ github.event.schedule }}"
+          else
+            echo "No schedule (manual or other trigger)"
+          fi
 
       - name: Health Check
         run: |
