@@ -28,5 +28,5 @@ jobs:
           echo "Target branch: ${{ github.base_ref }}"
 
       - name: Run only if PR is merged
-        if: github.event.action == 'closed' && github.event.pull_request.merged == true
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true   #Run this step ONLY when the PR is closed because it was merged, not just closed manually.
         run: echo "PR was merged"
