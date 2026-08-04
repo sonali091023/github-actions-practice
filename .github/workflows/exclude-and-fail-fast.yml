@@ -6,9 +6,14 @@ on:
 jobs:
   python-matrix:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.11", "3.12"]
+        
+        exclude:
+          - os: windows-latest
+            python-version: "3.10"
 
     runs-on: ${{ matrix.os }}
 
@@ -22,3 +27,7 @@ jobs:
 
       - name: Print Python Version
         run: python --version
+
+      - name: Force Failure on Python 3.11
+        if: matrix.python-version == '3.11'
+        run: exit 1
