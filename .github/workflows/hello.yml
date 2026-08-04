@@ -37,6 +37,10 @@ jobs:
         run: |
           echo "Runner OS: $RUNNER_OS"
 
-      - name: Intentionally fail
-        run: exit 1
+      #- name: Intentionally fail
+      #run: exit 1
+      
+      - name: Successful step
+        run: echo "Workflow fixed!"
+
 
