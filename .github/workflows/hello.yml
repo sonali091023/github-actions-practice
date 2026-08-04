@@ -37,3 +37,6 @@ jobs:
         run: |
           echo "Runner OS: $RUNNER_OS"
 
+      - name: Intentionally fail
+        run: exit 1
+
