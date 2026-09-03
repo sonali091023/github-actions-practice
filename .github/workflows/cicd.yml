@@ -1,0 +1,30 @@
+name: CICD
+on: 
+  workflow_dispatch:                          #Manual click[deliver] workflow whenever user needs
+jobs: 
+  codes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        run: echo "Clone the code from GitHub"
+
+  build:
+    needs: [code]                        #they run at the exact same time unless you tell them to wait using needs.
+    runs-on: ubuntu-latest
+    steps:
+      - name: build docker container
+        run: echo "docker container build"
+
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Test the container
+        run: echo "testing the container"
+
+  deploy:
+  needs: [build,test]
+  runs-on: ubuntu-latest
+  steps:
+    - name: deploy the app
+      run: echo "docker compose deploy the app"
