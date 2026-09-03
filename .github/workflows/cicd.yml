@@ -2,14 +2,14 @@ name: CICD
 on: 
   workflow_dispatch:                          #Manual click[deliver] workflow whenever user needs
 jobs: 
-  codes:
+  code:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         run: echo "Clone the code from GitHub"
 
   build:
-    needs: [code]                        #they run at the exact same time unless you tell them to wait using needs.
+    needs: [code]                       #they run at the exact same time unless you tell them to wait using needs.
     runs-on: ubuntu-latest
     steps:
       - name: build docker container
